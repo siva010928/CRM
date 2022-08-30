@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Leads</h1>
+    {% for lead in leads %}
+        <div class="lead">
+            <div>
+                <p>{{lead.first_name}}  {{lead.last_name}}  <a href={% url 'leads:lead-detail' lead.pk %}>view lead</a></p>
+            </div> 
+        </div>
+    {% endfor %}
+    {% if unassigned_leads.exists %}
+        <h1>Unassigned Leads</h1>
+        {% for lead in unassigned_leads %}
+            <div class="lead">
+                <div>
+                    <p>{{lead.first_name}}  {{lead.last_name}}  <a href={% url 'leads:assign-agent' lead.pk %}>assign agent</a></p>
+                </div> 
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock content %}
+    

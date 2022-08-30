@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM</title>
+</head>
+<body>
+    <p>
+
+        {% if request.user.is_authenticated %}
+            <p>Logged in as {{request.user.username}}   <a href={% url 'logout' %}> logout </a></p>
+        {% else %}
+            <p><a href={% url 'signup' %}>signup</a> <a href={% url 'login' %}> login </a></p>
+        {% endif %}
+        <hr>
+        {% if request.user.is_authenticated %}
+            {% if request.user.is_organisor %}
+                <p><a href={% url 'agents:agent-list' %}> agents </a></p>
+                <p>   <a href={% url 'agents:agent-create' %}> create new agent </a></p>
+            {% endif %}
+            <p><a href={% url 'leads:lead-list' %}> leads </a></p>
+            {% if request.user.is_organisor %}
+                <p><a href={% url 'leads:lead-create' %}> create new lead </a></p>
+            {% endif %}
+        {% else %}
+        {% endif %}
+        <p><a href={% url 'leads:category-list' %}>Categories</a></p>
+    </hr>
+    </p>
+    {% block content %}
+    {% endblock content %}
+</body>
+</html>

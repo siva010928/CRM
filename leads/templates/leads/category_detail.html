@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Category {{category.name}}</h1>
+    <h4>the leads are:</h4>
+
+    {% for lead in leads %}
+    <a href={% url 'leads:lead-detail' lead.pk %}>{{lead.first_name}} {{lead.last_name}}</a>
+    {% endfor %}
+
+{% endblock content %}

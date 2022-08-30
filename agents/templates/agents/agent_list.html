@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>this is our agents</h1>
+    {% for agent in agents %}
+        <div class="lead">
+            <a href={% url 'agents:agent-detail' agent.pk %}>{{agent.user.username}}</a>
+        </div>
+    {% endfor %}
+{% endblock content %}
+    

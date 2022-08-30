@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<p>update category {{lead.category}} for lead {{lead.first_name}} {{lead.last_name}}</p>
+<form  method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">update category</button>
+</form>
+
+{% endblock content %}
